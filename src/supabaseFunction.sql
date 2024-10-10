@@ -1,0 +1,17 @@
+CREATE OR REPLACE FUNCTION create_trades_table()
+RETURNS void AS $$
+BEGIN
+  CREATE TABLE IF NOT EXISTS public.trades (
+    id SERIAL PRIMARY KEY,
+    symbol TEXT NOT NULL,
+    type TEXT NOT NULL,
+    "lotSize" NUMERIC(10, 3) NOT NULL,
+    price NUMERIC(10, 2) NOT NULL,
+    "stopLoss" NUMERIC(10, 2),
+    "takeProfit" NUMERIC(10, 2),
+    "tradeDateTime" TIMESTAMP WITH TIME ZONE NOT NULL,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+  );
+END;
+$$ LANGUAGE plpgsql;
