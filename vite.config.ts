@@ -11,5 +11,8 @@ export default defineConfig({
   preview: {
     port: 5173,
     strictPort: true,
-  }
+  },
+  define: {
+    'import.meta.env.VITE_FINNHUB_API_KEY': JSON.stringify(process.env.VITE_FINNHUB_API_KEY), // Your actual API key
+  },
 })

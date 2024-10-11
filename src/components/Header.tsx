@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
-import { BarChart2, LineChart, User as UserIcon, Home, LogOut } from 'lucide-react'
+import { BarChart2, LineChart, User as UserIcon, Home, LogOut, Calendar } from 'lucide-react'
 import { supabase } from '../supabaseClient'
 import logo from '../assets/logo.png'
 
@@ -72,6 +72,18 @@ const Header: React.FC<HeaderProps> = ({ session }) => {
                     <UserIcon className="mr-1" size={18} />
                     User
                     {location.pathname === '/user' && (
+                      <span className="absolute inset-0 bg-blue-800 rounded-md px-7 py-4 z-[-1] -ml-3 -mt-2 -mr-3 -mb-2"></span> 
+                    )}
+                  </Link>
+                </li>
+                <li>
+                  <Link 
+                    to="/calendar" 
+                    className={`flex items-center hover:text-blue-200 relative`}
+                  >
+                    <Calendar className="mr-1" size={18} />
+                    Calendar
+                    {location.pathname === '/calendar' && (
                       <span className="absolute inset-0 bg-blue-800 rounded-md px-7 py-4 z-[-1] -ml-3 -mt-2 -mr-3 -mb-2"></span> 
                     )}
                   </Link>
