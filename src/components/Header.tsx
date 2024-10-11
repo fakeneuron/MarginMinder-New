@@ -2,6 +2,8 @@ import React from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { BarChart2, LineChart, User as UserIcon, Home, LogOut } from 'lucide-react'
 import { supabase } from '../supabaseClient'
+import logo from '../assets/logo.png'
+
 
 interface HeaderProps {
   session: any
@@ -20,7 +22,9 @@ const Header: React.FC<HeaderProps> = ({ session }) => {
     <header className="bg-blue-600 text-white shadow-md sticky top-0 z-10">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between py-4">
-          <Link to="/" className="text-2xl font-bold">Margin Minder</Link>
+          <Link to="/"> 
+            <img src={logo} alt="Margin Minder Logo" className="h-8" /> 
+          </Link>
           {session ? (
             <nav>
               <ul className="flex space-x-6">
