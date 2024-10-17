@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'
 import { supabase, initializeDatabase } from './supabaseClient'
 import Header from './components/Header'
-import Trades from './components/Trades'
-import Charts from './components/Charts'
-import Dashboard from './components/Dashboard'
-import User from './components/User'
-import Auth from './components/Auth'
+import Trades from './pages/Trades'
+import Charts from './pages/Charts'
+import Dashboard from './pages/Dashboard'
+import User from './pages/User'
+import Auth from './pages/Auth'
+import EconomicCalendar from './pages/EconomicCalendar';
 
 const App: React.FC = () => {
   const [session, setSession] = useState(null)
