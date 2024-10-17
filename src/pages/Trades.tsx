@@ -1,4 +1,3 @@
-/*
 import React, { useState, useEffect, useRef } from 'react'
 import { supabase } from '../supabaseClient'
 import { Pencil, Trash2, X } from 'lucide-react'
@@ -257,7 +256,9 @@ const Trades: React.FC = () => {
 
 export default Trades
 
-*/
+/*
+
+THIS WAS THE NEW STRUCTURE BASED ON TRADES AS COMPONENENTS. THE PAGE DOESN'T CURRENTLY USE THE COMPONENTS IN THE COMPONENTS FOLDER. THEY CAN BE DELETED UNTIL I FIGURE OUT HOW TO USE THEM.
 
 
 import React, { useState, useEffect } from 'react';
@@ -338,3 +339,4 @@ const Trades: React.FC = () => {
 };
 
 export default Trades;
+*/
