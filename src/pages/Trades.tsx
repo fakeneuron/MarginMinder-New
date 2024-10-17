@@ -1,3 +1,4 @@
+/*
 import React, { useState, useEffect, useRef } from 'react'
 import { supabase } from '../supabaseClient'
 import { Pencil, Trash2, X } from 'lucide-react'
@@ -255,3 +256,85 @@ const Trades: React.FC = () => {
 }
 
 export default Trades
+
+*/
+
+
+import React, { useState, useEffect } from 'react';
+import { supabase } from '../supabaseClient';
+import TradeForm from '../components/TradeForm';
+import TradeList from '../components/TradeList';
+import TradeImageHandler from '../components/ImageHandler';
+import { handleImagePaste } from '../utils/imageHandling';
+
+const Trades: React.FC = () => {
+  const [trades, setTrades] = useState<Trade[]>([]);
+  const [currentTrade, setCurrentTrade] = useState<Omit<Trade, 'id'>>({
+    symbol: '',
+    type: 'buy',
+    lotSize: 0,
+    price: 0,
+    stopLoss: null,
+    takeProfit: null,
+    tradeDateTime: new Date().toISOString().slice(0, 16),
+    imageUrl: null,
+    note: '',
+  });
+  const [editingTradeId, setEditingTradeId] = useState<number | null>(null);
+  const [pastedImage, setPastedImage] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetchTrades();
+  }, []);
+
+  const fetchTrades = async () => {
+    try {
+      const { data, error } = await supabase.from('trades').select('*');
+      if (error) throw error;
+      setTrades(data || []);
+    } catch (error: any) {
+      setError(error.message);
+    }
+  };
+
+  const handleTradeChange = (field: keyof Omit<Trade, 'id'>, value: any) => {
+    setCurrentTrade(prev => ({ ...prev, [field]: value }));
+  };
+
+  const handleSubmit = () => {
+    // logic for creating/updating a trade
+  };
+
+  const handleCancel = () => {
+    // logic for canceling/resetting the form
+  };
+
+  const handleRemoveImage = () => {
+    setPastedImage(null);
+  };
+
+  return (
+    <div>
+      <h1>Trades</h1>
+      <TradeForm
+        currentTrade={currentTrade}
+        onChange={handleTradeChange}
+        onSubmit={handleSubmit}
+        onCancel={handleCancel}
+        error={error}
+      />
+      <TradeList
+        trades={trades}
+        onEdit={setEditingTradeId}
+        onDelete={() => {}}
+      />
+      <TradeImageHandler
+        pastedImage={pastedImage}
+        onRemoveImage={handleRemoveImage}
+      />
+    </div>
+  );
+};
+
+export default Trades;
